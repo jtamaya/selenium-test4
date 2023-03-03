@@ -1,31 +1,16 @@
 version: '3'
 services:
   selenium-hub:
-    image: selenium/hub
-    container_name: selenium-hub
+    image: adslot/selenium/hub
+    container_name: public.ecr.aws/adslot/selenium/hub:4.8.0-20230210
     ports:
     - '4444:4444'
   chrome:
-    image: selenium/node-chrome
+    image: adslot/selenium/node-chrome
     volumes:
     - '/dev/shm:/dev/shm'
     depends_on:
-    - selenium-hub
-    environment:
-    - HUB_HOST=selenium-hub
-    - HUB_PORT=4444
-    healthcheck:
-      test: curl --fail -s http://localhost:4444/ || exit 1
-      interval: 1m30s
-      timeout: 10s
-      retries: 3
-
-  firefox:
-    image: selenium/node-firefox
-    volumes:
-    - '/dev/shm:/dev/shm'
-    depends_on:
-    - selenium-hub
+    - adslot/selenium/hub
     environment:
     - HUB_HOST=selenium-hub
     - HUB_PORT=4444
