@@ -4,7 +4,7 @@ phases:
   pre_build:
     commands:
       - docker login -u $dockerhub_username -p $dockerhub_password
-      - docker-compose up -d
+      - docker-compose up -d --scale chrome=1
   build:
     commands:
       - mvn test
