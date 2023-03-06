@@ -1,16 +1,13 @@
 version: 0.2
 
 phases:
-  install:
-    runtime-versions:
-      docker: 18
   pre_build:
     commands:
       - docker login -u $dockerhub_username -p $dockerhub_password
       - docker-compose up -d --scale chrome=1
   build:
     commands:
-      - mvn test
+      - mvn test -e
   post_build:
     commands:
       - docker-compose down
