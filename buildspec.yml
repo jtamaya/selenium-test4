@@ -16,3 +16,6 @@ reports:
     file-format: CucumberJson
     files:
       - target/json/output.json
+artifacts:
+  files:
+    - ./**/*
