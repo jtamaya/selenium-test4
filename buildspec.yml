@@ -7,7 +7,7 @@ phases:
       - docker-compose up -d --scale chrome=1
   build:
     commands:
-      - mvn test
+      - mvn test -e
   post_build:
     commands:
       - docker-compose down
