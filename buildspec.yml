@@ -1,6 +1,9 @@
 version: 0.2
 
 phases:
+  install:
+    runtime-versions:
+      docker: 18
   pre_build:
     commands:
       - docker login -u $dockerhub_username -p $dockerhub_password
@@ -8,6 +11,9 @@ phases:
   build:
     commands:
       - mvn test
+  post_build:
+    commands:
+      - docker-compose down
 reports:
   Selenium:
     file-format: CucumberJson
